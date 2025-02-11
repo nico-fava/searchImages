@@ -8,7 +8,7 @@ const SearchBar = () => {
   const dispatch = useDispatch<AppDispatch>()
 
   const handleSearch = () => {
-    if (query.trim()) dispatch(fetchImages(query))
+    dispatch(fetchImages(query))
   }
 
   return (

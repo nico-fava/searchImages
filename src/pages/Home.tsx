@@ -1,14 +1,25 @@
-import { useSelector } from 'react-redux'
-import { RootState } from '../store/store'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchImages } from '../store/imageSlice'
+import { RootState, AppDispatch } from '../store/store'
 import SearchBar from '../components/SearchBar'
 import ImageCard from '../components/ImageCard'
 
 const Home = () => {
+  const dispatch = useDispatch<AppDispatch>()
   const images = useSelector((state: RootState) => state.images.images)
+  const status = useSelector((state: RootState) => state.images.status)
+
+  // Fetch random images when the component loads
+  useEffect(() => {
+    dispatch(fetchImages())
+  }, [dispatch])
 
   return (
     <div>
       <SearchBar />
+      {status === 'loading' && <p>Loading...</p>}
+      {status === 'failed' && <p>Failed to load images.</p>}
       <div className="image-grid">
         {images.map((image) => (
           <ImageCard
