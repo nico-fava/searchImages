@@ -4,7 +4,7 @@ import { fetchImages } from '../store/imageSlice'
 import { AppDispatch } from '../store/store'
 
 const SearchBar = () => {
-  const [query, setQuery] = useState('')
+  const [query, setQuery] = useState<string>('')
   const dispatch = useDispatch<AppDispatch>()
 
   const handleSearch = () => {

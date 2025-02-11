@@ -8,9 +8,11 @@ import ImageCard from '../components/ImageCard'
 const Home = () => {
   const dispatch = useDispatch<AppDispatch>()
   const images = useSelector((state: RootState) => state.images.images)
+  const searchKeyword = useSelector(
+    (state: RootState) => state.images.searchKeyword
+  )
   const status = useSelector((state: RootState) => state.images.status)
 
-  // Fetch random images when the component loads
   useEffect(() => {
     dispatch(fetchImages())
   }, [dispatch])
@@ -18,6 +20,9 @@ const Home = () => {
   return (
     <div>
       <SearchBar />
+      <h2>
+        Showing results for: <strong>{searchKeyword}</strong>
+      </h2>
       {status === 'loading' && <p>Loading...</p>}
       {status === 'failed' && <p>Failed to load images.</p>}
       <div className="image-grid">
