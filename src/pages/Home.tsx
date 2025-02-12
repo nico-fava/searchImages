@@ -15,6 +15,7 @@ const Home = () => {
   )
   const status = useSelector((state: RootState) => state.images.status)
   const [showOnlyFavorites, setShowOnlyFavorites] = useState(false)
+  const [isAnimating, setIsAnimating] = useState(false)
 
   useEffect(() => {
     dispatch(fetchImages())
@@ -22,6 +23,12 @@ const Home = () => {
 
   const getFavorites = () => {
     return JSON.parse(localStorage.getItem('favorites') || '[]')
+  }
+
+  const handleToggleFavorites = () => {
+    setIsAnimating(true)
+    setShowOnlyFavorites(!showOnlyFavorites)
+    setTimeout(() => setIsAnimating(false), 300) // Match with animation duration
   }
 
   const filteredImages = showOnlyFavorites
@@ -47,7 +54,7 @@ const Home = () => {
         </h2>
 
         <button
-          onClick={() => setShowOnlyFavorites(!showOnlyFavorites)}
+          onClick={handleToggleFavorites}
           className={`favorite-toggle ${showOnlyFavorites ? 'active' : ''}`}
         >
           <Heart
@@ -57,41 +64,47 @@ const Home = () => {
         </button>
       </div>
 
-      {status === 'loading' && (
-        <div className="loading-container">
-          <div className="loading-spinner"></div>
-        </div>
-      )}
+      <div className="content-container">
+        {status === 'loading' && (
+          <div className="loading-container fade-enter">
+            <div className="loading-spinner"></div>
+          </div>
+        )}
 
-      {status === 'failed' && (
-        <div className="error-container">
-          <p>Failed to load images.</p>
-          <button
-            onClick={() => dispatch(fetchImages())}
-            className="retry-button"
-          >
-            Try Again
-          </button>
-        </div>
-      )}
+        {status === 'failed' && (
+          <div className="error-container fade-enter">
+            <p>Failed to load images.</p>
+            <button
+              onClick={() => dispatch(fetchImages())}
+              className="retry-button"
+            >
+              Try Again
+            </button>
+          </div>
+        )}
 
-      {status === 'idle' && filteredImages.length === 0 && (
-        <div className="empty-container">
-          <p>
-            {showOnlyFavorites ? 'No favorite images yet.' : 'No images found.'}
-          </p>
-        </div>
-      )}
+        {status === 'idle' && filteredImages.length === 0 && (
+          <div className="empty-container fade-enter">
+            <p>
+              {showOnlyFavorites
+                ? 'No favorite images yet.'
+                : 'No images found.'}
+            </p>
+          </div>
+        )}
 
-      <div className="image-grid">
-        {filteredImages.map((image) => (
-          <ImageCard
-            key={image.id}
-            id={image.id}
-            url={image.urls.small}
-            alt={image.alt_description}
-          />
-        ))}
+        <div
+          className={`image-grid ${isAnimating ? 'fade-out' : 'fade-enter'}`}
+        >
+          {filteredImages.map((image) => (
+            <ImageCard
+              key={image.id}
+              id={image.id}
+              url={image.urls.small}
+              alt={image.alt_description}
+            />
+          ))}
+        </div>
       </div>
     </div>
   )

@@ -59,7 +59,6 @@ src/
 │   ├── SearchBar.tsx
 │── pages/
 │   ├── Home.tsx
-│   ├── ImageDetail.tsx
 │── store/
 │   ├── store.ts
 │   ├── imageSlice.ts
