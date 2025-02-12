@@ -49,6 +49,9 @@ You can use my API key, just this once (;
 
 To use the application, simply enter a keyword in the search bar to find images from Unsplash. You can also view random images or click on an image for detailed information.
 
+4. Comment Feature: Allow users to comment on images, with data stored client-side.
+5. Favorite Images: Enable users to save images as favorites, stored locally.
+
 ```
 src/
 │── components/
