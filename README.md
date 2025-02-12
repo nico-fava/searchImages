@@ -1,55 +1,55 @@
-# React + TypeScript + Vite
+# Project Title: Unsplash Image Search Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
 
-Currently, two official plugins are available:
+This project is a robust web application built with **React**, **TypeScript**, **Redux Toolkit**, and **Vite**. It interfaces with the **Unsplash API** to search and display images based on user input, following a mobile-first, client-side-only approach. The application allows users to manage comments and favorites, ensuring a seamless experience while adhering to accessibility standards and security best practices.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Key Features
 
-## Expanding the ESLint configuration
+- **Search & Pagination**: Users can search for images using keywords with pagination support.
+- **Random Keyword Display**: Displays images based on a random keyword if no search term is provided.
+- **Detailed Image View**: Each image has a dedicated view for more information.
+- **Comment Feature**: Users can comment on images, with data stored client-side.
+- **Favorite Images**: Users can save images as favorites, stored locally.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Technology Stack
 
-- Configure the top-level `parserOptions` property like this:
+- **React**
+- **TypeScript**
+- **Redux Toolkit**
+- **Vite**
+- **SCSS** (for responsive design)
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Installation Instructions
+
+1. Clone the repository:
+
+```
+git clone https://github.com/nico-fava/searchImages.git
+cd searchImages
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+2. Install dependencies:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```
+npm install
 ```
 
+3. Start the development server:
 
+```
+npm run dev
+```
+
+## Configuration
+
+You can use my API key, just this once (;
+
+## Usage
+
+To use the application, simply enter a keyword in the search bar to find images from Unsplash. You can also view random images or click on an image for detailed information.
+
+```
 src/
 │── components/
 │   ├── ImageCard.tsx
@@ -68,3 +68,8 @@ src/
 │   ├── api.ts
 │── App.tsx
 │── main.tsx
+```
+
+## Acknowledgments
+
+Special thanks to the Unsplash API.
