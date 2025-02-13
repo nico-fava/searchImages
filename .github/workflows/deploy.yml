@@ -30,16 +30,19 @@ jobs:
       - name: Build Project
         run: npm run build
 
-      - name: Check dist folder
+      - name: Check dist folder size
         run: |
           echo "Checking dist directory size"
           du -sh ./dist
+
+      - name: Copy build output without symlinks
+        run: cp -rL ./dist ./dist-copied
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: github-pages
-          path: ./dist
+          path: ./dist-copied
 
   deploy:
     needs: build-and-deploy
